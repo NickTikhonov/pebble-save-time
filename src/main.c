@@ -42,7 +42,7 @@ static void outbox_sent_callback(DictionaryIterator *iterator, void *context) {
 
 static void update_time() {
   // Get a tm structure
-  time_t temp = time(NULL); 
+  time_t temp = time(NULL);
   struct tm *tick_time = localtime(&temp);
 
   // Write the current hours and minutes into a buffer
@@ -57,7 +57,7 @@ static void update_time() {
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   update_time();
 
-  // Get weather update every 30 minutes
+  // Get update every 30 minutes
   if(tick_time->tm_min % 30 == 0) {
     // Begin dictionary
     DictionaryIterator *iter;
@@ -85,7 +85,7 @@ static void main_window_load(Window *window) {
   text_layer_set_font(s_time_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
 
-  // Create Rescuetime Layer 
+  // Create Rescuetime Layer
   s_rescuetime_layer = text_layer_create((GRect) {
     .origin = {0, 60},
     .size = { bounds.size.w, 100}

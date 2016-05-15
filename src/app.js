@@ -33,10 +33,8 @@ function getProductivity() {
   } else {
     var url = 'https://www.rescuetime.com/anapi/data?key=' + api_key + '&' + API_OPTIONS;
 
-    // Send request to OpenWeatherMap
-    xhrRequest(url, 'GET', 
+    xhrRequest(url, 'GET',
       function(responseText) {
-        // responseText contains a JSON object with weather info
         var response = JSON.parse(responseText);
         var data = calcStats(response);
         if (data) {
@@ -44,7 +42,7 @@ function getProductivity() {
         } else {
           sendUpdate(0,0);
         }
-      }      
+      }
     );
   }
 }
@@ -66,9 +64,9 @@ function calcStats(json) {
   var total = times.reduce(function(a,b) {
     return a + b;
   }, 0);
-  
+
   if (total === 0) return undefined;
-  
+
   var score = 0;
 
   for (i = 0; i < scores.length; i++) {
@@ -77,7 +75,7 @@ function calcStats(json) {
 
   total = Math.floor(total / 3600);
   score = Math.floor(score);
-  
+
   return {
     total: total,
     score: score
@@ -96,20 +94,19 @@ function sendStringUpdate(line1, line2) {
 
   Pebble.sendAppMessage(dictionary,
     function(e) {
-      console.log("Weather info sent to Pebble successfully!");
+      console.log("Info sent to Pebble successfully!");
     },
     function(e) {
-      console.log("Error sending weather info to Pebble!");
+      console.log("Error sending info to Pebble!");
     }
   );
 }
 
 // Listen for when the watchface is opened
-Pebble.addEventListener('ready', 
+Pebble.addEventListener('ready',
   function(e) {
     console.log("PebbleKit JS ready!");
 
-    // Get the initial weather
     getProductivity();
   }
 );
@@ -119,5 +116,5 @@ Pebble.addEventListener('appmessage',
   function(e) {
     console.log("AppMessage received!");
     getProductivity();
-  }                     
+  }
 );
