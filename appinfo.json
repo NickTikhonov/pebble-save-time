@@ -1,0 +1,29 @@
+{
+    "appKeys": {
+        "KEY_PRODUCTIVITY": 0,
+        "KEY_TOTAL_HOURS": 1
+    },
+    "capabilities": [
+        "location",
+        "configurable"
+    ],
+    "companyName": "Pebble",
+    "enableMultiJS": false,
+    "longName": "Save Time: RescueTime watchface",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "Save Time",
+    "targetPlatforms": [
+        "aplite",
+        "basalt",
+        "chalk"
+    ],
+    "uuid": "75bd8580-1cd6-49d7-821f-97c416727abb",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
